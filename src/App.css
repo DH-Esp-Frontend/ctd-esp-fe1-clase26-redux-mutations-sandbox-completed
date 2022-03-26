@@ -13,19 +13,43 @@
   }
 }
 
-.App-header {
+.App-body {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
+.App-body h1 {
+  margin-bottom: 10px;
+}
+.App-body h2 {
+  margin-top: 0;
+}
+
 .App-link {
   color: #61dafb;
+}
+
+.App-table {
+  max-width: 100%;
+  width: 100%;
+
+}
+.App-table > div {
+  padding: 0 10px;
+}
+
+.App-table input {
+  margin-left: 10px;
+  width: 300px;
+  height: 40px;
+  padding: 5px;
+  font-size: 20px;
+  border-radius: 5px;
 }
 
 @keyframes App-logo-spin {
