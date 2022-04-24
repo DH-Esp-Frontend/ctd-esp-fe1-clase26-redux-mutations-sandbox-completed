@@ -1,3 +1,7 @@
+export interface PersonajesResult {
+    results: Personaje[];
+}
+
 interface Personaje {
     id: number;
     name: string;
