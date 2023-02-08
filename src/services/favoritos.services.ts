@@ -1,23 +1,34 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { FavList } from '../types/personaje.types';
 
 export const favoritosApi= createApi({
     reducerPath: 'favoritosApi',
     tagTypes: ['Favoritos'],
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://6269bb5caa65b5d23e88b018.mockapi.io/favoritos'}) ,
+    baseQuery: fetchBaseQuery({ baseUrl: "https://digital-api.fly.dev/api/collections/favoritos/records"}) ,
     endpoints: (builder) => ({
-        getFavoritos: builder.query<{ id: number }[], number>({
-            query: (n) => '',
+        getFavoritos: builder.query<FavList, string>({
+            query: ()=>"",
+            providesTags: ["Favoritos"]
         }),
-        addFavorito: builder.mutation<number, number>({
+        addFavorito: builder.mutation<string, string>({
             // note: an optional `queryFn` may be used in place of `query`
-            query: (id) => ({
+            query: (name) => ({
                 url: ``,
                 method: 'POST',
-                body: {id: id},
+                body: {name: name}
+            }),
+            invalidatesTags: ['Favoritos'],
+        }),
+        deleteFavortio: builder.mutation<string, string>({
+            // note: an optional `queryFn` may be used in place of `query`
+            query: (id) => ({
+                url: `/${id}`,
+                method: 'DELETE',
+                body: {id: id}
             }),
             invalidatesTags: ['Favoritos'],
         })
     })
 });
 
-export const {useGetFavoritosQuery, useAddFavoritoMutation} = favoritosApi;
+export const { useAddFavoritoMutation, useGetFavoritosQuery, useDeleteFavortioMutation } = favoritosApi;

@@ -1,8 +1,8 @@
 export interface PersonajesResult {
-    results: Personaje[];
+    results: IPersonaje[];
 }
 
-interface Personaje {
+export interface IPersonaje {
     id: number;
     name: string;
     status: string;
@@ -11,4 +11,13 @@ interface Personaje {
     episode: string[];
 }
 
-export default Personaje;
+export interface Favs {
+    id: string;
+    name: string;
+}
+
+export interface FavList {
+    items: Favs[]
+}
+
+export default IPersonaje;

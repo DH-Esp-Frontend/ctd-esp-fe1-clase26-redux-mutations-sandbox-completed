@@ -2,19 +2,21 @@ import {configureStore} from "@reduxjs/toolkit";
 import personajesReducer from "../reducers/personajesReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import {personajesApi} from "../services/personaje.services";
+import { favoritosApi } from "../services/favoritos.services";
 
 export const store = configureStore({
     reducer: {
         //
         // Add the generated reducer as a specific top-level slice
         [personajesApi.reducerPath]: personajesApi.reducer,
+        [favoritosApi.reducerPath]: favoritosApi.reducer,
         //
         personajes: personajesReducer,
     },
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(personajesApi.middleware),
+        getDefaultMiddleware().concat(personajesApi.middleware).concat(favoritosApi.middleware),
 })
 // Infiere los tipos del `RootState` y `AppDispatch` de la store
 export type RootState = ReturnType<typeof store.getState>
